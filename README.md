@@ -7,14 +7,16 @@ $ npm install --save sequelize
 
 $ sudo npm install -g sequelize-cli
 
-$ npx sequelize-cli migration:generate --name Users
+## Userモデルの作成
+
+$ npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string
 
 ## Docker Command
 $ docker-compose up --build
 $ docker-compose build --no-cache && docker-compose up
 
-## データベース (MySQL) へのアクセス
-$ docker-compose exec db mysql -uuser -ppassword dev
+## デーdocker-compose exec db mysql -uuser -ppassword devタベース (MySQL) へのアクセス
+$ 
 
 ## データベースのマイグレーション
 $ docker-compose exec backend npx sequelize-cli db:migrate
