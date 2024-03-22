@@ -15,8 +15,8 @@ $ npx sequelize-cli model:generate --name User --attributes name:string,email:st
 $ docker-compose up --build
 $ docker-compose build --no-cache && docker-compose up
 
-## デーdocker-compose exec db mysql -uuser -ppassword devタベース (MySQL) へのアクセス
-$ 
+## データベース (MySQL) へのアクセス
+$ docker-compose exec db mysql -uuser -ppassword dev
 
 ## データベースのマイグレーション
 $ docker-compose exec backend npx sequelize-cli db:migrate
