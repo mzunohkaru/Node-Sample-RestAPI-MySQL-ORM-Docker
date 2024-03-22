@@ -51,12 +51,17 @@ router.post("/refresh", async (req, res) => {
   // リフレッシュトークンの検証
   try {
     const payload = JWT.verify(refreshToken, SECRET_KEY);
+    // アクセストークン更新
     const newAccessToken = JWT.sign({ email: payload.email }, SECRET_KEY, {
       expiresIn: "1h",
     });
 
-    // 必要に応じてリフレッシュトークンを更新
-    res.json({ accessToken: newAccessToken });
+    // リフレッシュトークン更新
+    const newRefreshToken = JWT.sign({ email: payload.email }, SECRET_KEY, {
+      expiresIn: "7d",
+    });
+
+    res.json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
   } catch (error) {
     return res.status(403).json({ error: "リフレッシュトークンが無効です" });
   }
